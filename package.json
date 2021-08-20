@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Pedro-Dev-SI/VideoPost/issues"
   },
-  "homepage": "https://github.com/Pedro-Dev-SI/VideoPost#readme"
+  "homepage": "https://github.com/Pedro-Dev-SI/VideoPost#readme",
+  "dependencies": {
+    "readline-sync": "^1.4.10"
+  }
 }
