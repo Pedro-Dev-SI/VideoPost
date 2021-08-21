@@ -2,8 +2,12 @@
 //Readline vai ser útil para pegar o input do usuário via terminal
 const readline = require('readline-sync')
 
+const robots = {
+   text: require('./robots/text.js')
+}
+
 //Esta função vai agrupar tudo
-function start(){
+async function start(){
    //Objeto que armazena tudo que for encontardo nas buscas
    const content = {
 
@@ -12,6 +16,9 @@ function start(){
    //Vai criar  atributos deste objeto e adicionar o valor que as funções retornarem
    content.searchTerm = askAndReturnSearchTerm()
    content.prefix = askAndReturnPrefix()
+
+   //Passando o conteudo para o robô de texto
+   await robots.text(content)
 
    function askAndReturnSearchTerm(){
       //Este metodo question vai injetar no terminal uma pergunta
