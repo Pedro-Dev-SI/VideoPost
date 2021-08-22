@@ -20,7 +20,10 @@ async function robot(content){
       //Busca o algoritmo
       const wikipediaAlgorithm = algorithmiaAuthenticated.algo("web/WikipediaParser/0.1.2")
       //Executa o algoritmo
-      const wikipediaResponse = await wikipediaAlgorithm.pipe(content.searchTerm)
+      const wikipediaResponse = await wikipediaAlgorithm.pipe({
+         "lang": content.lang,
+         "articleName": content.searchTerm
+      })
       //Retorna a resposta
       const wikipediaContent = wikipediaResponse.get()
       content.sourceContentOriginal = wikipediaContent.content

@@ -1,4 +1,3 @@
-//*REQUIRES
 //Readline vai ser útil para pegar o input do usuário via terminal
 const readline = require('readline-sync')
 
@@ -16,6 +15,7 @@ async function start(){
    //Vai criar  atributos deste objeto e adicionar o valor que as funções retornarem
    content.searchTerm = askAndReturnSearchTerm()
    content.prefix = askAndReturnPrefix()
+   content.lang = askAndReturnLang()
 
    //Passando o conteudo para o robô de texto
    await robots.text(content)
@@ -30,6 +30,13 @@ async function start(){
       const selectedPrefixIndex = readline.keyInSelect(prefixes, 'Select one option: ')
       const selectedPrefixText = prefixes[selectedPrefixIndex];
       return selectedPrefixText
+   }
+
+   function askAndReturnLang(){
+      const lang = ['pt', 'en']
+      const selectedLangIndex = readline.keyInSelect(lang, 'Select a language: ')
+      const selectedLangText = lang[selectedLangIndex]
+      return selectedLangText
    }
 
    console.log(content)
