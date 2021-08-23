@@ -5,26 +5,19 @@ const watson = require('../credentials/watson-nlu.json')
 
 const NaturalLanguageUnderstandingV1 = require('watson-developer-cloud/natural-language-understanding/v1.js')
  
-var nlu = new NaturalLanguageUnderstandingV1({
+const nlu = new NaturalLanguageUnderstandingV1({
   iam_apikey: watson.apikey,
   version: '2018-04-05',
   url: watson.url
 })
 
-// nlu.analyze({
-//    text: `Hi I'm Peter Parker and I love to save my neighborhood`,
-//    features: {
-//       keywords: {}
-//    }
-// }, (error, response) => {
-//    if (error){
-//       throw error;
-//    }
-//    console.log(JSON.stringify(response, null, 4))
-//    process.exit(0)
-// })
+const state = require('./save-content.js')
 
-async function robot(content){
+async function robot(){
+
+   //Carregar o conteudo no disco
+   const content = state.load()
+
    //Baixar conteudo do wikipedia
    await fetchContentFromWikipedia(content)
 
@@ -39,6 +32,9 @@ async function robot(content){
 
    //Preenche as keywords de cada sentença
    await fetchKeywordsOfAllSentences(content)
+
+   //Aqui vai ser salvo todo o estado
+   state.save(content)
 
    //!IMPORTANTE PARA OUTRAS IMPLEMENTAÇÕES
    //*Busca conteudo no wikipedia
