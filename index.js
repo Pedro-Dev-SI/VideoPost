@@ -9,7 +9,7 @@ const robots = {
 async function start(){
    //Objeto que armazena tudo que for encontardo nas buscas
    const content = {
-
+      maximumSentences: 7
    }
 
    //Vai criar  atributos deste objeto e adicionar o valor que as funções retornarem
@@ -39,7 +39,7 @@ async function start(){
       return selectedLangText
    }
 
-   console.log(content)
+   console.log(JSON.stringify(content, null, 4))
 
 }
 start()
